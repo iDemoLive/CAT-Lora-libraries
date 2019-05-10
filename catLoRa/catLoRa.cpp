@@ -15,6 +15,7 @@
 #define	LED_13				13
 #define _NWKSKEY			"28AED22B7E1516A609CFABF715884F3C"
 #define _APPSKEY			"1628AE2B7E15D2A6ABF7CF4F3C158809"
+#define _APPKEY				"1628AE2B7E15D2A6ABF7CF4F3C158809"
 
 #define _SIP_RESET			"sip reset"
 #define _SET_CLASS		"mac set_class"
@@ -23,6 +24,7 @@
 #define _SET_devADDR	"mac set_devaddr"
 #define _SET_NWKSKEY	"mac set_nwkskey"
 #define _SET_APPSKEY		"mac set_appskey"
+#define _SET_APPKEY		"mac set_appkey"
 #define _SET_FREQ			"mac set_ch_freq"
 #define _SET_RX2			"mac set_rx2"
 #define _SET_ABP			"mac join abp"
@@ -104,7 +106,7 @@ void catLoRa:: joinOTAA(String _CLASS, String _devEUI, String _appEUI){
   macCommand(String(_SET_CLASS)+" "+String(_CLASS));
   macCommand(String(_SET_devEUI)+" "+String(_devEUI));
   macCommand(String(_SET_appEUI)+" "+String(_appEUI));
-  macCommand(String(_SET_APPSKEY)+" "+String(_APPSKEY));
+  macCommand(String(_SET_APPKEY)+" "+String(_APPKEY));
   macCommand(String(_SET_OTAA));
   macCommand(String(_SET_LORA));
 
