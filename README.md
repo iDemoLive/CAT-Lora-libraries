@@ -1,4 +1,4 @@
-# CAT-Lora-libraries
+# CAT-Lora-libraries S76S
 catlora libraries for gravitech CAT StarterKit
 put folder "catLoRa" here >> C:\...\Documents\Arduino\libraries\catLoRa
 
