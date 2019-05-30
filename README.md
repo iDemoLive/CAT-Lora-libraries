@@ -2,6 +2,9 @@
 catlora libraries for gravitech CAT StarterKit
 put folder "catLoRa" here >> C:\...\Documents\Arduino\libraries\catLoRa
 
+# manual doc
+https://drive.google.com/file/d/1bo4Q1q2jkanWQLOJboHYvxiuGfp4M-OK/view
+
 # Ep1 setup Arduino IDE for CAT-StarterKit-S76S
 https://youtu.be/PKaW0zfaVfY
 อธิบายขั้นตอนการ Setup และ Install โปรแกรม Arduino สำหรับใช้งานกับ อุปกรณ์ CAT Starter kit S76S
