@@ -11,10 +11,10 @@
 #ifndef catLoRa_h
 #define catLoRa_h
 
-#include <Arduino.h>
+#include <Arduino.h>   // required before wiring_private.h
 #include <Wire.h>
 #include <HTS221.h>
-#include "wiring_private.h"
+#include "wiring_private.h" // pinPeripheral() function
 
 class catLoRa {
 	public:
@@ -29,6 +29,7 @@ class catLoRa {
 		void joinOTAA(String _CLASS, String _devEUI, String _appEUI);
 		void macCommand(String _Comm);
 		bool sendPayload(String _port, String _payLoad);
+		String getDL();
 		String getTemp();
 		String getHumi();
 		String getLPPformat();
