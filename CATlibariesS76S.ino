@@ -2,13 +2,14 @@
 catLoRa lora;
 
 String _CLASS = "C";
-String _devEUI = "XXXXXXXXXXXXXXXXX"; 	// 16digit
-String _devADDR = "XXXXXXXX";	//8 digit
+String _devEUI = "XXXXXXXXXXXXXXXXX";  // 16 digit
+String _devADDR = "XXXXXXXX"; // 8 digit
 String _port = "6";
 String _payLoad = "";
 
 uint32_t   Interval_Time_Old;
 uint16_t   Interval_Time;
+int ledPin = 5;
 
 void setup() {
   // put your setup code here, to run once:
@@ -16,6 +17,8 @@ void setup() {
   Interval_Time = 30000;
   lora.begin();
   lora.joinABP(_CLASS, _devEUI, _devADDR);
+
+  pinMode(5, OUTPUT);
 }//setup
 
 void loop() {
@@ -27,20 +30,34 @@ void loop() {
     Interval_Time_Old = millis();
 
      String temp = lora.getTemp();
+     float t = temp.toInt();
+     t = t/100;
      Serial.println(temp);
-
-     String humi = lora.getHumi();
-     Serial.println(humi);
-
-     _payLoad = lora.getLPPformat();
+     Serial.println(String(t)+" C");
      
-    if(lora.sendPayload(_port,_payLoad)){
-      Serial.println(_payLoad);
+     String humi = lora.getHumi();
+     float h = humi.toInt();
+     h = h/100;
+     Serial.println(humi);
+     Serial.println(String(h)+" %");
+     
+     _payLoad = lora.getLPPformat();
+     String _tempHumi = temp+humi;
+     
+    if(lora.sendPayload(_port,_tempHumi)){
+      Serial.println(_tempHumi);
       Serial.println("Send Payload OK");
     }
     
     Serial.println("....................................");
     delay(500);
   }//
+
+  String x = lora.getDL();
+  if(x != ""){
+      Serial.println("payloadDL:"+x);
+  }else{
+    Serial.println("NO DATA DL");
+  }
 
 }//loop
