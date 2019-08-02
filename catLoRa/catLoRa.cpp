@@ -7,7 +7,6 @@
 * Created by : if2u
 *
 ***********************************************/
-
 #include "catLoRa.h"
 
 #define	PIN_RX				11
@@ -17,7 +16,6 @@
 #define _APPSKEY			"1628AE2B7E15D2A6ABF7CF4F3C158809"
 #define _APPKEY				"1628AE2B7E15D2A6ABF7CF4F3C158809"
 
-#define _SIP_RESET			"sip reset"
 #define _SET_CLASS		"mac set_class"
 #define _SET_devEUI		"mac set_deveui"
 #define _SET_appEUI		"mac set_appeui"
@@ -31,12 +29,6 @@
 #define _SET_OTAA			"mac join otaa"
 #define _SET_LORA			"mac save"
 #define _SEND_PAYLOAD	"mac tx ucnf"
-
-#define _GET_CLASS		"mac get_class"
-#define _GET_devEUI		"mac get_deveui"
-#define _GET_devADDR	"mac get_devaddr"
-#define _GET_NWKSKEY	"mac get_nwkskey"
-#define _GET_APPSKEY 	"mac get_appskey"
 
 Uart Serial2(&sercom1, PIN_RX, PIN_TX, SERCOM_RX_PAD_0, UART_TX_PAD_2);
 
@@ -74,6 +66,7 @@ void SERCOM1_Handler(void){
   Serial2.IrqHandler();
 }
 
+//********************************SET FREQUENCY**************************
 void catLoRa:: setFrequency(void){
 	
 	int freq [] = { 923200000, 923400000, 922000000, 922200000, 922400000, 922600000, 922800000, 923000000 };
@@ -89,6 +82,7 @@ void catLoRa:: setFrequency(void){
 
 }
 
+//********************************JOIN ABP**************************
 void catLoRa:: joinABP(String _CLASS, String _devEUI, String _devADDR){
   
   macCommand(String(_SET_CLASS)+" "+String(_CLASS));
@@ -112,7 +106,7 @@ void catLoRa:: joinOTAA(String _CLASS, String _devEUI, String _appEUI){
 
 }
 
-
+//********************************SEND PAYLOAD**************************
 bool catLoRa:: sendPayload(String _port, String _payLoad){
 	
 	Serial2.print(String(_SEND_PAYLOAD)+" "+String(_port) + String(" ") + String(_payLoad));
@@ -129,6 +123,23 @@ bool catLoRa:: sendPayload(String _port, String _payLoad){
 return return_bool;
 }
 
+//********************************DOWN LINK**************************
+String catLoRa:: getDL(){
+	
+	msg = "";
+	msg = Serial2.readString();
+	String macComm = "";
+	
+	String checkDL = ">> mac rx ";
+	int checkStart = msg.indexOf(checkDL);
+	if(checkStart != -1){
+		int checkEND = msg.indexOf("\n", checkStart+1);
+        macComm = msg.substring(checkStart+10, checkEND); 		
+	}
+return macComm;
+}
+
+//********************************MAC Command**************************
 void catLoRa:: macCommand(String _Comm){
 	Serial2.print(String(_Comm));
 	msg = "";
@@ -139,6 +150,7 @@ void catLoRa:: macCommand(String _Comm){
 	delay(100);
 }
 
+//********************************GET Temperature**************************
 String catLoRa:: getTemp(){
 	
 	smeHumidity.begin();
@@ -146,9 +158,9 @@ String catLoRa:: getTemp(){
 	msg = "";
 	msg = uint16_t(smeHumidity.readTemperature()*100);
 	return msg;
-	
 }
 
+//********************************GET Humidity**************************
 String catLoRa:: getHumi(){
 	
 	smeHumidity.begin();
@@ -156,9 +168,9 @@ String catLoRa:: getHumi(){
 	msg = "";
 	msg = uint16_t(smeHumidity.readHumidity()*100);
 	return msg;
-	
 }
 
+//********************************GET Temp&Humi Cayenne Low Power Payload Format**************************
 String catLoRa:: getLPPformat(){
 	
 	smeHumidity.begin();
@@ -181,5 +193,4 @@ String catLoRa:: getLPPformat(){
 	CayenFormat = cayen_tmp + tmp_hex + cayen_hum + hum_hex;
 	
 	return CayenFormat;
-	
 }
