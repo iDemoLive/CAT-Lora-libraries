@@ -4,9 +4,10 @@
 * 920 - 925 MHz (AS923)
 * Created on : April 22, 2019
 * For CAT StarterKit Gravitech S767
-* Created by : if2u
+* Created by : if2u v.2
 *
 ***********************************************/
+
 #include "catLoRa.h"
 
 #define	PIN_RX				11
@@ -15,6 +16,11 @@
 #define _NWKSKEY			"28AED22B7E1516A609CFABF715884F3C"
 #define _APPSKEY			"1628AE2B7E15D2A6ABF7CF4F3C158809"
 #define _APPKEY				"1628AE2B7E15D2A6ABF7CF4F3C158809"
+
+#define _SIP_RESET			"sip reset"
+#define _SIP_getModel		"sip get_hw_model_ver"
+#define _SIP_getDevEUI	"sip get_hw_deveui"
+#define _SIP_getUUID		"sip get_uuid"
 
 #define _SET_CLASS		"mac set_class"
 #define _SET_devEUI		"mac set_deveui"
@@ -136,7 +142,7 @@ String catLoRa:: getDL(){
 		int checkEND = msg.indexOf("\n", checkStart+1);
         macComm = msg.substring(checkStart+10, checkEND); 		
 	}
-return macComm;
+	return macComm;
 }
 
 //********************************MAC Command**************************
@@ -179,8 +185,8 @@ String catLoRa:: getLPPformat(){
 	String humi = "";
 	String CayenFormat = "";
 	
-	String cayen_tmp = "0067";
-    String cayen_hum = "0168";
+	String cayen_tmp = "0067"; //3digi (2byte) *0.1(10)
+    String cayen_hum = "0168"; //2digi (1byte) *0.5(2)
 	
 	temp = uint16_t(smeHumidity.readTemperature()*10);
 	humi = uint16_t(smeHumidity.readHumidity()*2);
