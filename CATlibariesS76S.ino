@@ -30,11 +30,11 @@ void loop() {
      String temp = lora.getTemp();
      String humi = lora.getHumi();
     
-     _payLoad = lora.getLPPformat();
-     String _tempHumi = temp+humi;
+     //_payLoad = lora.getLPPformat();  //cayen format
+     _payLoad = temp+humi;    //CAT dashboard format
      
-    if(lora.sendPayload(_port,_tempHumi)){
-      Serial.println(_tempHumi);
+    if(lora.sendPayload(_port,_payLoad)){
+      Serial.println(_payLoad);
       Serial.println("Send Payload OK");
     }
     
