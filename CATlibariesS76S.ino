@@ -9,7 +9,6 @@ String _payLoad = "";
 
 uint32_t   Interval_Time_Old;
 uint16_t   Interval_Time;
-int ledPin = 5;
 
 void setup() {
   // put your setup code here, to run once:
@@ -18,7 +17,6 @@ void setup() {
   lora.begin();
   lora.joinABP(_CLASS, _devEUI, _devADDR);
 
-  pinMode(5, OUTPUT);
 }//setup
 
 void loop() {
