@@ -28,17 +28,8 @@ void loop() {
     Interval_Time_Old = millis();
 
      String temp = lora.getTemp();
-     float t = temp.toInt();
-     t = t/100;
-     Serial.println(temp);
-     Serial.println(String(t)+" C");
-     
      String humi = lora.getHumi();
-     float h = humi.toInt();
-     h = h/100;
-     Serial.println(humi);
-     Serial.println(String(h)+" %");
-     
+    
      _payLoad = lora.getLPPformat();
      String _tempHumi = temp+humi;
      
