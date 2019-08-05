@@ -2,9 +2,9 @@
 *
 * LORA BY CATTELECOM
 * 920 - 925 MHz (AS923)
-* Created on : April 22, 2019
+* Created on : August 04, 2019
 * For CAT StarterKit Gravitech S767
-* Created by : if2u v.2
+* Created by : if2u v.3
 *
 ***********************************************/
 
@@ -129,7 +129,7 @@ bool catLoRa:: sendPayload(String _port, String _payLoad){
 return return_bool;
 }
 
-//********************************DOWN LINK**************************
+//********************************GET DOWN LINK**************************
 String catLoRa:: getDL(){
 	
 	msg = "";
@@ -142,6 +142,45 @@ String catLoRa:: getDL(){
 		int checkEND = msg.indexOf("\n", checkStart+1);
         macComm = msg.substring(checkStart+10, checkEND); 		
 	}
+	return macComm;
+}
+
+//********************************GET PORT DOWN LINK**************************
+String catLoRa:: portDL(){
+	
+	msg = "";
+	msg = Serial2.readString();
+	String macComm = "";
+	
+	String x = lora.getDL();
+	if(x != ""){
+    int checkStart = x.indexOf(' ');
+		if(checkStart > -1){
+		  macComm = x.substring(0, checkStart);
+		}
+   }else{
+		 macComm = "NO DATA DL";
+   }
+	return macComm;
+}
+
+//********************************GET PAYLOAD DOWN LINK**************************
+String catLoRa:: payloadDL(){
+	
+	msg = "";
+	msg = Serial2.readString();
+	String macComm = "";
+	
+	String x = lora.getDL();
+	if(x != ""){
+    int checkStart = x.indexOf(' ');
+		if(checkStart > -1){
+		  int checkEND = x.indexOf("\n", checkStart+1);
+		  macComm = x.substring(checkStart+1, checkEND); 
+		}
+   }else{
+		 macComm = "NO DATA DL";
+   }
 	return macComm;
 }
 
