@@ -55,7 +55,13 @@ void loop() {
 
   String x = lora.getDL();
   if(x != ""){
-      Serial.println("payloadDL:"+x);
+
+      Serial.println("portDL:"+lora.portDL(x));
+      Serial.println("payloadDL:"+lora.payloadDL(x));
+      
+      if(lora.payloadDL(x) == "22") lora.ledON();
+      if(lora.payloadDL(x) == "11") lora.ledOFF();
+      
   }else{
     Serial.println("NO DATA DL");
   }
