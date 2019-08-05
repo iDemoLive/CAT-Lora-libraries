@@ -146,40 +146,38 @@ String catLoRa:: getDL(){
 }
 
 //********************************GET PORT DOWN LINK**************************
-String catLoRa:: portDL(){
+String catLoRa:: portDL(String _DL){
 	
 	msg = "";
 	msg = Serial2.readString();
 	String macComm = "";
-	
-	String x = lora.getDL();
-	if(x != ""){
-    int checkStart = x.indexOf(' ');
+
+	if(_DL != ""){
+    int checkStart = _DL.indexOf(' ');
 		if(checkStart > -1){
-		  macComm = x.substring(0, checkStart);
+		  macComm = _DL.substring(0, checkStart);
 		}
    }else{
-		 macComm = "NO DATA DL";
+		 macComm = "NO PORT DL";
    }
 	return macComm;
 }
 
 //********************************GET PAYLOAD DOWN LINK**************************
-String catLoRa:: payloadDL(){
+String catLoRa:: payloadDL(String _DL){
 	
 	msg = "";
 	msg = Serial2.readString();
 	String macComm = "";
 	
-	String x = lora.getDL();
-	if(x != ""){
-    int checkStart = x.indexOf(' ');
+	if(_DL != ""){
+    int checkStart = _DL.indexOf(' ');
 		if(checkStart > -1){
-		  int checkEND = x.indexOf("\n", checkStart+1);
-		  macComm = x.substring(checkStart+1, checkEND); 
+		  int checkEND = _DL.indexOf("\n", checkStart+1);
+		  macComm = _DL.substring(checkStart+1, checkEND); 
 		}
    }else{
-		 macComm = "NO DATA DL";
+		 macComm = "NO PAYLOAD DL";
    }
 	return macComm;
 }
