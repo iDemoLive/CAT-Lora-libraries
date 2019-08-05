@@ -148,8 +148,6 @@ String catLoRa:: getDL(){
 //********************************GET PORT DOWN LINK**************************
 String catLoRa:: portDL(String _DL){
 	
-	msg = "";
-	msg = Serial2.readString();
 	String macComm = "";
 
 	if(_DL != ""){
@@ -166,8 +164,6 @@ String catLoRa:: portDL(String _DL){
 //********************************GET PAYLOAD DOWN LINK**************************
 String catLoRa:: payloadDL(String _DL){
 	
-	msg = "";
-	msg = Serial2.readString();
 	String macComm = "";
 	
 	if(_DL != ""){
