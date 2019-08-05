@@ -2,9 +2,9 @@
 *
 * LORA BY CATTELECOM
 * 920 - 925 MHz (AS923)
-* Created on : April 22, 2019
+* Created on : August 04, 2019
 * For CAT StarterKit Gravitech S767
-* Created by : if2u
+* Created by : if2u v.3
 *
 ***********************************************/
 
@@ -30,6 +30,8 @@ class catLoRa {
 		void macCommand(String _Comm);
 		bool sendPayload(String _port, String _payLoad);
 		String getDL();
+		String payloadDL();
+		String portDL();
 		String getTemp();
 		String getHumi();
 		String getLPPformat();
