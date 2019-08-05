@@ -30,8 +30,8 @@ class catLoRa {
 		void macCommand(String _Comm);
 		bool sendPayload(String _port, String _payLoad);
 		String getDL();
-		String payloadDL();
-		String portDL();
+		String payloadDL(String _DL);
+		String portDL(String _DL);
 		String getTemp();
 		String getHumi();
 		String getLPPformat();
