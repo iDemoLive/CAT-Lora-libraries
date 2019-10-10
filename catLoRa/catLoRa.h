@@ -34,6 +34,8 @@ class catLoRa {
 		String portDL(String _DL);
 		String getTemp();
 		String getHumi();
+		String getTempCATformat();
+		String getHumiCATformat();
 		String getLPPformat();
 	
 	private:
