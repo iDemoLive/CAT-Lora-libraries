@@ -26,12 +26,11 @@ void loop() {
   // Check Time for send payload
   if (millis() - Interval_Time_Old >= Interval_Time){
     Interval_Time_Old = millis();
-
-     String temp = lora.getTemp();
-     String humi = lora.getHumi();
     
-     //_payLoad = lora.getLPPformat();  //cayen format
-     _payLoad = temp+humi;    //CAT dashboard format
+     String catTemp = lora.getTempCATformat();
+     String catHumi = lora.getHumiCATformat();
+    
+     _payLoad = "02"+catTemp+catHumi;  //number sensor + catFormat
      
     if(lora.sendPayload(_port,_payLoad)){
       Serial.println(_payLoad);
