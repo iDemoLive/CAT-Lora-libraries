@@ -209,6 +209,32 @@ String catLoRa:: getHumi(){
 	return msg;
 }
 
+//********************************GET Temp CAT**************************
+String catLoRa:: getTempCATformat(){
+	
+	smeHumidity.begin();
+	
+	msg = "";
+	// 03 Signed Short
+	msg = String(uint16_t(smeHumidity.readTemperature()*100), HEX);
+	if (msg.length() % 2 != 0) msg = String("0" + msg);
+	msg = String("03" + msg);
+	return msg;
+}
+
+//********************************GET Humi CAT**************************
+String catLoRa:: getHumiCATformat(){
+	
+	smeHumidity.begin();
+	
+	msg = "";
+	// 04 Unsigned Short
+	msg = String(uint16_t(smeHumidity.readHumidity()*100), HEX);
+	if (msg.length() % 2 != 0) String("0" + msg);
+	msg = String("04" + msg);
+	return msg;
+}
+
 //********************************GET Temp&Humi Cayenne Low Power Payload Format**************************
 String catLoRa:: getLPPformat(){
 	
