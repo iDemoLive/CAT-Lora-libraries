@@ -14,6 +14,11 @@ Release Date : 2019-08-04;
 New : payloadDL();
       portDL();
       
+Libraries V.4
+Release Date : 2019-10-10;
+New : getTempCATformat();
+      getHumiCATformat();
+      
 # Manual Doc
 https://drive.google.com/file/d/1bo4Q1q2jkanWQLOJboHYvxiuGfp4M-OK/view
 
