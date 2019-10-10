@@ -4,7 +4,7 @@
 * 920 - 925 MHz (AS923)
 * Created on : August 04, 2019
 * For CAT StarterKit Gravitech S767
-* Created by : if2u v.3
+* Created by : if2u v.4
 *
 ***********************************************/
 
