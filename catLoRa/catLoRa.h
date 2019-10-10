@@ -2,7 +2,7 @@
 *
 * LORA BY CATTELECOM
 * 920 - 925 MHz (AS923)
-* Created on : August 04, 2019
+* Created on : October 10, 2019
 * For CAT StarterKit Gravitech S767
 * Created by : if2u v.4
 *
