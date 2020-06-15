@@ -2818,6 +2818,12 @@
                   "Sensor2"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [
+                  " / 100"
+                ],
+                "type": "math"
               }
             ]
           ],
@@ -2915,6 +2921,12 @@
                   "Sensor2"
                 ],
                 "type": "field"
+              },
+              {
+                "params": [
+                  " / 100"
+                ],
+                "type": "math"
               }
             ]
           ],
@@ -3756,5 +3768,5 @@
   "timezone": "",
   "title": "Gravitech",
   "uid": "bDiRcKvWz",
-  "version": 16
+  "version": 17
 }
